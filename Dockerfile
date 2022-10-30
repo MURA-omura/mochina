@@ -9,5 +9,6 @@ RUN apt update \
     && pip install wheel \
     && pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
-COPY mochina.py /app/
-CMD ["python", "mochina.py"]
+COPY ./* /app/
+COPY cogs /app/cogs
+CMD ["python", "main.py"]

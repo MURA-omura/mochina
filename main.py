@@ -17,7 +17,7 @@ def main():
 
     @bot.slash_command(guild_ids=[683939861539192860, 542684644244586496])
     async def vping(ctx):
-        await ctx.respond("pong")
+        await ctx.respond(f"pong {round(bot.latency, 1)}ms")
 
 
     @bot.slash_command(guild_ids=[542684644244586496])
