@@ -1,9 +1,7 @@
-import random
-
 import discord
 import yaml
 
-from cogs import ScheduleCog, VoiceCog
+from cogs import ScheduleCog, VkosenCog, VoiceCog
 
 
 def main():
@@ -17,21 +15,11 @@ def main():
 
     @bot.slash_command(guild_ids=[683939861539192860, 542684644244586496])
     async def vping(ctx):
-        await ctx.respond(f"pong {round(bot.latency, 1)}ms")
-
-
-    @bot.slash_command(guild_ids=[542684644244586496])
-    async def vamasita(ctx):
-        '''雨下さんがママか確認'''
-        if random.randint(1, 10000) % 5 == 0:
-            await ctx.respond(f'雨下さんは{ctx.author.display_name}さんのママです。')
-        elif random.randint(1, 10000) % 5 == 1:
-            await ctx.respond(f'雨下さん{ctx.author.display_name}さんのママじゃないので......（冷静）')
-        else:
-            await ctx.respond(f'雨下さんは{ctx.author.display_name}さんのママではありません。')
+        await ctx.respond(f"pong {round(bot.latency, 2)}ms")
 
 
     bot.add_cog(ScheduleCog(bot))
+    bot.add_cog(VkosenCog(bot))
     bot.add_cog(VoiceCog(bot))
     with open('config.yml', 'r') as f:
         cfg = yaml.safe_load(f)
