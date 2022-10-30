@@ -1,8 +1,9 @@
 import random
-import yaml
-import discord
 
-from cogs.voice import VoiceCog
+import discord
+import yaml
+
+from cogs import ScheduleCog, VoiceCog
 
 
 def main():
@@ -30,9 +31,11 @@ def main():
             await ctx.respond(f'雨下さんは{ctx.author.display_name}さんのママではありません。')
 
 
+    bot.add_cog(ScheduleCog(bot))
     bot.add_cog(VoiceCog(bot))
     with open('config.yml', 'r') as f:
         cfg = yaml.safe_load(f)
+    bot.get_cog('ScheduleCog').run_schedule.start()
     bot.run(cfg['TOKEN'])
 
 
